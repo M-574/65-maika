@@ -1,7 +1,7 @@
 databases:
   - name: 65-maika
     databaseName: rails7_sample_staging
-    user: moe
+    user: 65-maika
     region: singapore
 
 services:
