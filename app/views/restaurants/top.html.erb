@@ -1,0 +1,32 @@
+<h1 id="concept">CONCEPT</h1>
+<h1 id="aboutus">ABOUT US</h1>
+<h1 id="menu">MENU</h1>
+<%= link_to "MENU一覧へ", restaurants_path %>
+<h1>いいねランキング</h1>
+<% @rank_restaurants.each do |t| %>
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+    <%= link_to t.user.name, user_path(t.user.id) %>
+    <%= image_tag t.user.image_url, size: "250x200" if t.user.image? %>
+    <%= t.user.email %>
+    <%= t.name %>
+    <%= t.price %>
+    <%= t.category %>
+    <p><% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+        <%= link_to restaurant_like_path(id: t.id, restaurant_id: t.id), method: :delete do %>
+          <i class="fas fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to restaurant_likes_path(id: t.id, restaurant_id: t.id), method: :post do %>
+          <i class="far fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %></p>
+    <% end %>
+
+    <%= link_to "詳細へ", restaurant_path(t.id) %>
+
+    <%= link_to "編集する", edit_restaurant_path(t.id) %> 
+    <%= button_to "削除する", restaurant_path(t.id), method: :delete %>
+<% end%>

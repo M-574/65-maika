@@ -1,0 +1,35 @@
+<%= form_for @restaurant do |f| %>
+    <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+
+# データ型がstringで選択式の入力フォーム
+  <div class="field">
+    <%= f.label :category  %>
+    <%= f.select :category, 
+    [["はじめのひと皿", "はじめのひと皿"], 
+    ["サラダ", "サラダ"], 
+    ["お肉の前菜", "お肉の前菜"],
+    ["魚介の前菜", "魚介の前菜"],
+    ["温前菜", "温前菜"],
+    ["メインディッシュ", "メインディッシュ"],
+    ["パスタ", "パスタ"],
+    ["お酒のお供に", "お酒のお供に"],
+    ["デザート", "デザート"]] ,include_blank: "選択して下さい" %>
+  </div>
+
+# データ型がintegerで数字のみを入力するフォーム
+  <div class="field">
+    <%= f.label :price  %>
+    <%= f.number_field :price, :size => 10 %>
+  </div>
+
+# データ型がtextで自由記述の入力フォーム
+  <div class="field">
+    <%= f.label :detail  %>
+    <%= f.text_area :detail, :size => "30x2" %>
+  </div>
+
+    <%= f.submit "編集する" %>
+  <% end %>
